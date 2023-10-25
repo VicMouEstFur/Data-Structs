@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "pushToMain",
+            "type": "shell",
+            "command": [
+                "git add .github/workflows/run_go_code.yml",
+                "git commit -m \"Add GitHub Action to run Go code\"",
+                "git push origin main"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

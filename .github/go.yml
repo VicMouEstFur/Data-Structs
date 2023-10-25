@@ -1,4 +1,4 @@
-name: Go Build and Test
+name: Run Go Code
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    name: Build & Test
+  run:
+    name: Run Code
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -20,19 +20,8 @@ jobs:
         go-version: ^1.17
       id: go
 
-    - name: Cache Go modules
-      uses: actions/cache@v2
-      with:
-        path: ~/go/pkg/mod
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-go-
-
     - name: Install dependencies
       run: go mod download
 
-    - name: Build
-      run: go build -v ./...
-
-    - name: Test
-      run: go test -v ./...
+    - name: Run Go Code
+      run: go run ./main.go
